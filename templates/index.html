@@ -77,7 +77,7 @@
             <p>Here’s an example of how to use cURL to send a request to the API:</p>
             <div class="position-relative">
                 <pre class="bg-light p-3 rounded" id="code2">
-curl -X POST -H "Content-Type: application/json" -d '{"text": "You won a free vacation!"}' http://localhost:5000/predict
+curl -X POST -H "Content-Type: application/json" -d '{"text": "You won a free vacation!"}' https://spam-no-more.onrender.com/predict
                 </pre>
                 <button class="copy-btn" onclick="copyToClipboard('code2')">Copy</button>
             </div>
@@ -104,7 +104,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"text": "You won a free va
                 <pre class="bg-light p-3 rounded" id="code3">
 import requests
 
-url = 'http://localhost:5000/predict'
+url = 'https://spam-no-more.onrender.com/predict'
 data = {'text': 'This is a test message.'}
 response = requests.post(url, json=data)
 
