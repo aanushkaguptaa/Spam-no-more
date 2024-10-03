@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam-No-More</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 800px;
+        }
+        h1, h2, h3, p {
+            color: #ffffff;
+        }
+        .bg-light {
+            background-color: #1f1f1f !important;
+            color: #ffffff;
+            position: relative;
+        }
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .rounded {
+            border: 1px solid #333;
+        }
+        footer p {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .copy-btn {
+            background-color: #444;
+            border: none;
+            color: #bb86fc;
+            padding: 5px 10px;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+        .copy-btn:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Spam-No-More</h1>
+        <p class="lead text-center">This powerful spam detection API tool quickly and accurately flags unwanted content, providing essential protection against digital clutter.</p>
+
+        <div class="mt-5">
+            <h2>Step-by-Step: How to Use the API</h2>
+            <ol>
+                <li><strong>Step 1:</strong> Send a POST request to the <code>/predict</code> endpoint with your message text. You’ll need to include a JSON payload like this:</li>
+                <div class="position-relative">
+                    <pre class="bg-light p-3 rounded" id="code1">
+{
+    "text": "Your message here"
+}
+                    </pre>
+                    <button class="copy-btn" onclick="copyToClipboard('code1')">Copy</button>
+                </div>
+                <li><strong>Step 2:</strong> The API will process your text, decide if it’s spam or not, and return a result.</li>
+                <li><strong>Step 3:</strong> The response will be a simple JSON indicating whether your message is <strong>Spam</strong> or <strong>Not Spam</strong>.</li>
+            </ol>
+
+            <h3>Example: Sending a Request</h3>
+            <p>Here’s an example of how to use cURL to send a request to the API:</p>
+            <div class="position-relative">
+                <pre class="bg-light p-3 rounded" id="code2">
+curl -X POST -H "Content-Type: application/json" -d '{"text": "You won a free vacation!"}' http://localhost:5000/predict
+                </pre>
+                <button class="copy-btn" onclick="copyToClipboard('code2')">Copy</button>
+            </div>
+
+            <h3>Response Format</h3>
+            <p>If the text is spam, the API will respond with:</p>
+            <pre class="bg-light p-3 rounded">
+{
+    "result": "Spam"
+}
+            </pre>
+            <p>If the text is not spam, you’ll get:</p>
+            <pre class="bg-light p-3 rounded">
+{
+    "result": "Not Spam"
+}
+            </pre>
+        </div>
+
+        <div class="mt-4">
+            <h2>Integrating the API in Your Projects</h2>
+            <p>Want to use this API in your own project? It’s easy! Here’s a simple Python example to get you started:</p>
+            <div class="position-relative">
+                <pre class="bg-light p-3 rounded" id="code3">
+import requests
+
+url = 'http://localhost:5000/predict'
+data = {'text': 'This is a test message.'}
+response = requests.post(url, json=data)
+
+print(response.json())
+                </pre>
+                <button class="copy-btn" onclick="copyToClipboard('code3')">Copy</button>
+            </div>
+            <p>This snippet will send a POST request to the API and print whether the message is spam or not. You can integrate it with any messaging platform, email server, or even as part of a larger app.</p>
+        </div>
+
+        <footer class="text-center mt-5">
+            <p>Check out the project on <a href="https://github.com/aanushkaguptaa/Spam-no-more" target="_blank">GitHub</a>.</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId).innerText;
+            var textArea = document.createElement("textarea");
+            textArea.value = copyText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
