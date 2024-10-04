@@ -6,7 +6,7 @@
 ## Overview
 
 **Spam-No-More** is a powerful tool designed to safeguard your users from the scourge of spam. Leveraging advanced machine learning techniques, it accurately identifies unwanted messages, ensuring a cleaner and more efficient communication experience.
-**Access it here**: [Spam-No-More API Webpage](https://your-webpage-link.com)
+**Access it here**: [Spam-No-More API Webpage](https://spam-no-more.onrender.com/)
 
 ---
 
@@ -50,6 +50,7 @@
 ### Resources
 - **Tutorial by CampusX**: [Watch on YouTube](https://youtu.be/YncZ0WwxyzU?si=uGkZv2EyCyyCLf57)
 - **Dataset**: [SMS Spam Collection Dataset on Kaggle](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
+- **Deployment**: [Integration & Deployment of ML model with React & Flask](https://medium.com/@pooranjoyb/integration-deployment-of-ml-model-with-react-flask-3033dd6034b3)
 
 ---
 
