@@ -55,12 +55,15 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Spam-No-More</h1>
-        <p class="lead text-center">This powerful spam detection API tool quickly and accurately flags unwanted content, providing essential protection against digital clutter.</p>
+        <p class="lead text-center">
+            A powerful spam detection API tool that now includes a <strong>Hugging Face Summarizer</strong> 
+            to extract key insights from your input text!
+        </p>
 
         <div class="mt-5">
             <h2>Step-by-Step: How to Use the API</h2>
             <ol>
-                <li><strong>Step 1:</strong> Send a POST request to the <code>/predict</code> endpoint with your message text. You’ll need to include a JSON payload like this:</li>
+                <li><strong>Step 1:</strong> Send a POST request to the <code>/predict</code> endpoint with your message text. Include a JSON payload like this:</li>
                 <div class="position-relative">
                     <pre class="bg-light p-3 rounded" id="code1">
 {
@@ -69,8 +72,8 @@
                     </pre>
                     <button class="copy-btn" onclick="copyToClipboard('code1')">Copy</button>
                 </div>
-                <li><strong>Step 2:</strong> The API will process your text, decide if it’s spam or not, and return a result.</li>
-                <li><strong>Step 3:</strong> The response will be a simple JSON indicating whether your message is <strong>Spam</strong> or <strong>Not Spam</strong>.</li>
+                <li><strong>Step 2:</strong> The API will process your text, determine if it’s spam, and also generate a brief summary using the Hugging Face model.</li>
+                <li><strong>Step 3:</strong> The response includes both spam detection results and the summary.</li>
             </ol>
 
             <h3>Example: Sending a Request</h3>
@@ -83,23 +86,25 @@ curl -X POST -H "Content-Type: application/json" -d '{"text": "You won a free va
             </div>
 
             <h3>Response Format</h3>
-            <p>If the text is spam, the API will respond with:</p>
+            <p>If the text is spam, the API responds with:</p>
             <pre class="bg-light p-3 rounded">
 {
-    "result": "Spam"
+    "result": "Spam",
+    "summary": "Brief summary of the input text."
 }
             </pre>
             <p>If the text is not spam, you’ll get:</p>
             <pre class="bg-light p-3 rounded">
 {
-    "result": "Not Spam"
+    "result": "Not Spam",
+    "summary": "Brief summary of the input text."
 }
             </pre>
         </div>
 
         <div class="mt-4">
             <h2>Integrating the API in Your Projects</h2>
-            <p>Want to use this API in your own project? It’s easy! Here’s a simple Python example to get you started:</p>
+            <p>Want to use this API in your own project? Here’s a simple Python example to get you started:</p>
             <div class="position-relative">
                 <pre class="bg-light p-3 rounded" id="code3">
 import requests
@@ -112,7 +117,7 @@ print(response.json())
                 </pre>
                 <button class="copy-btn" onclick="copyToClipboard('code3')">Copy</button>
             </div>
-            <p>This snippet will send a POST request to the API and print whether the message is spam or not. You can integrate it with any messaging platform, email server, or even as part of a larger app.</p>
+            <p>This snippet sends a POST request to the API and prints whether the message is spam or not, along with its summary.</p>
         </div>
 
         <footer class="text-center mt-5">
