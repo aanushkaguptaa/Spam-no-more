@@ -3,141 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spam-No-More</title>
+    <title>PriorityText API</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300&family=Nunito:wght@600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
         body {
-            background-color: #121212;
-            color: #ffffff;
+            background-color: #fefeff;
+            font-family: 'Nunito', sans-serif;
+            color: #737c84;
         }
+        
         .container {
-            max-width: 800px;
+            max-width: 1200px;
+            padding: 2rem;
         }
-        h1, h2, h3, p {
-            color: #ffffff;
+        
+        h1, h2, h3, h4 {
+            color: #101010;
+            font-family: 'Funnel Display', serif;
         }
-        .bg-light {
-            background-color: #1f1f1f !important;
-            color: #ffffff;
-            position: relative;
+        
+        .hero-section {
+            max-width: 50%;
+            margin-bottom: 3rem;
         }
-        a {
-            color: #bb86fc;
-            text-decoration: none;
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
         }
-        a:hover {
-            text-decoration: underline;
+        
+        .hero-description {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #737c84;
         }
-        .rounded {
-            border: 1px solid #333;
+        
+        .cards-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
         }
-        footer p {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #888;
-        }
-        .copy-btn {
-            background-color: #444;
+        
+        .card {
+            flex: 1;
+            border-radius: 20px;
+            padding: 2rem;
             border: none;
-            color: #bb86fc;
-            padding: 5px 10px;
-            cursor: pointer;
-            position: absolute;
-            top: 5px;
-            right: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        
+        .card-guide {
+            background-color: #cce1fe;
+        }
+        
+        .card-examples {
+            background-color: #fecddd;
+        }
+        
+        .code-block {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 1rem;
+            position: relative;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 5px;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        
         .copy-btn:hover {
-            background-color: #666;
+            background-color: #101010;
+            color: white;
+        }
+        
+        .accuracy-badge {
+            background-color: #101010;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+            }
+            
+            .hero-section {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Spam-No-More</h1>
-        <p class="lead text-center">
-            A powerful spam detection API tool that now includes a <strong>Hugging Face Summarizer</strong> 
-            to extract key insights from your input text!
-        </p>
-
-        <div class="mt-5">
-            <h2>Step-by-Step: How to Use the API</h2>
-            <ol>
-                <li><strong>Step 1:</strong> Send a POST request to the <code>/predict</code> endpoint with your message text. Include a JSON payload like this:</li>
-                <div class="position-relative">
-                    <pre class="bg-light p-3 rounded" id="code1">
-{
-    "text": "Your message here"
-}
-                    </pre>
-                    <button class="copy-btn" onclick="copyToClipboard('code1')">Copy</button>
-                </div>
-                <li><strong>Step 2:</strong> The API will process your text, determine if it’s spam, and also generate a brief summary using the Hugging Face model.</li>
-                <li><strong>Step 3:</strong> The response includes both spam detection results and the summary.</li>
-            </ol>
-
-            <h3>Example: Sending a Request</h3>
-            <p>Here’s an example of how to use cURL to send a request to the API:</p>
-            <div class="position-relative">
-                <pre class="bg-light p-3 rounded" id="code2">
-curl -X POST -H "Content-Type: application/json" -d '{"text": "You won a free vacation!"}' https://spam-no-more.onrender.com/predict
-                </pre>
-                <button class="copy-btn" onclick="copyToClipboard('code2')">Copy</button>
-            </div>
-
-            <h3>Response Format</h3>
-            <p>If the text is spam, the API responds with:</p>
-            <pre class="bg-light p-3 rounded">
-{
-    "result": "Spam",
-    "summary": "Brief summary of the input text."
-}
-            </pre>
-            <p>If the text is not spam, you’ll get:</p>
-            <pre class="bg-light p-3 rounded">
-{
-    "result": "Not Spam",
-    "summary": "Brief summary of the input text."
-}
-            </pre>
+    <div class="container">
+        <div class="hero-section">
+            <h1 class="hero-title">PriorityText API</h1>
+            <h3 class="hero-description">
+                Transform your text processing with our advanced dual-purpose API. 
+                Leveraging state-of-the-art machine learning, we offer precise spam detection 
+                with <span class="accuracy-badge">98% accuracy</span> and intelligent text summarization 
+                powered by Hugging Face T5.
+            </h3>
         </div>
 
-        <div class="mt-4">
-            <h2>Integrating the API in Your Projects</h2>
-            <p>Want to use this API in your own project? Here’s a simple Python example to get you started:</p>
-            <div class="position-relative">
-                <pre class="bg-light p-3 rounded" id="code3">
+        <div class="cards-container">
+            <div class="card card-guide">
+                <h2>Quick Start Guide</h2>
+                        <h5 class="mt-4">Make an API Request</h5>
+                        <div class="code-block">
+                            <pre>{
+    "text": "Your message here",
+    "min_length": 10,    // Optional
+    "max_length": 150    // Optional
+}</pre>
+                            <button class="copy-btn" onclick="copyToClipboard('request-code')">Copy</button>
+                        </div>
+                        <h5 class="mt-4">Get Smart Results</h5>
+                        <div class="code-block">
+                            <pre>{
+    "result": "Ham",
+    "summary": "Your text summary",
+    "confidence": 0.98
+}</pre>
+<button class="copy-btn" onclick="copyToClipboard('request-code')">Copy</button>
+                        </div>
+            </div>
+
+            <div class="card card-examples">
+                <h2>Code Examples</h2>
+                <h5 class="mt-4">Python</h5>
+                <div class="code-block">
+                    <pre>
 import requests
 
-url = 'https://spam-no-more.onrender.com/predict'
-data = {'text': 'This is a test message.'}
-response = requests.post(url, json=data)
+response = requests.post(
+    'https://prioritytext-api.onrender.com/predict',
+    json={'text': 'Your message here'}
+)
 
-print(response.json())
-                </pre>
-                <button class="copy-btn" onclick="copyToClipboard('code3')">Copy</button>
+result = response.json()
+print(f"Result: {result['result']}")
+print(f"Summary: {result['summary']}")</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('python-code')">Copy</button>
+                </div>
+
+                <h5 class="mt-4">JavaScript</h5>
+                <div class="code-block">
+                    <pre>
+fetch('https://prioritytext-api.onrender.com/predict', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({text: 'Your message here'})
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Result:', data.result);
+    console.log('Summary:', data.summary);
+});</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('js-code')">Copy</button>
+                </div>
             </div>
-            <p>This snippet sends a POST request to the API and prints whether the message is spam or not, along with its summary.</p>
         </div>
 
         <footer class="text-center mt-5">
-            <p>Check out the project on <a href="https://github.com/aanushkaguptaa/Spam-no-more" target="_blank">GitHub</a>.</p>
+            <p>View the project on <a href="https://github.com/aanushkaguptaa/PriorityText" target="_blank">GitHub</a></p>
         </footer>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function copyToClipboard(elementId) {
-            var copyText = document.getElementById(elementId).innerText;
-            var textArea = document.createElement("textarea");
-            textArea.value = copyText;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textArea);
+            const element = document.getElementById(elementId);
+            const text = element.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = element.nextElementSibling;
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                }, 2000);
+            });
         }
     </script>
 </body>
