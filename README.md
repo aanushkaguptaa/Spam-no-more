@@ -1,59 +1,48 @@
-# Spam-No-More
-**Your Digital Doorkeeper Against Unwanted Messages**
+# Priority Text  
+**Your All-in-One Text Intelligence API**  
 
----
+---  
 
-## Overview
+## Overview  
 
-**Spam-No-More** is a powerful tool designed to safeguard your users from the scourge of spam. Leveraging advanced machine learning techniques, it accurately identifies unwanted messages, ensuring a cleaner and more efficient communication experience.
-**Access it here**: [Spam-No-More API Webpage](https://spam-no-more.onrender.com/)
+**Priority Text** is a versatile API that combines state-of-the-art spam detection with intelligent text summarization capabilities. It ensures clean, efficient communication by identifying unwanted messages and generating concise summaries, making it an indispensable tool for modern applications.  
+**Access it here**: [Priority Text API Webpage](https://prioritytext-api.onrender.com/)  
 
----
+---  
 
-## Key Features
+## Key Features  
 
-- **Precision-Engineered Detection**: Employs a robust Random Forest classifier, meticulously trained on a vast dataset to accurately distinguish spam from legitimate content.
-  
-- **Linguistic Sophistication**: Incorporates natural language processing techniques to understand the nuances of text and detect subtle spam patterns.
+- **Dual-Purpose Functionality**: Offers precise spam detection with 99% precision and 98% accuracy, along with text summarization powered by Hugging Face T5-small.  
+- **Machine Learning Excellence**: Utilizes a robust Random Forest classifier for spam detection and advanced NLP techniques for summarization.  
+- **Developer-Friendly API**: Simple integration with fast response times (under 2 seconds) for seamless text processing.  
 
-- **Feature-Rich Analysis**: Extracts informative features to provide a comprehensive understanding of message content, enhancing detection accuracy.
+---  
 
----
+## Development Process  
 
-## Development Process
+1. **Data Cleaning**: Curated a 5,572-row dataset of spam and ham messages for training, ensuring diverse linguistic representation.  
+2. **Preprocessing**: Applied NLP techniques like stop word removal, stemming, and tokenization to extract meaningful patterns.  
+3. **Feature Engineering**: Leveraged TF-IDF vectorization and additional features, boosting spam detection accuracy by 2%.  
+4. **Text Summarization**: Integrated Hugging Face T5-small to generate concise summaries for submitted text.  
+5. **Deployment**: Deployed on Render, providing public access with efficient backend handling via Flask.  
 
-1. **Data Cleaning**: Curated a diverse dataset of spam and ham messages to train the model on a wide range of linguistic patterns.
-   
-2. **Preprocessing**: Preprocessed the data meticulously, applying techniques like stop word removal, stemming, and tokenization to extract meaningful information.
-   
-3. **Feature Engineering**: Crafted insightful features, including word count, character count, and TF-IDF representations, to enhance model performance.
-   
-4. **Algorithmic Exploration**: Evaluated a variety of machine learning algorithms to select the most suitable for spam detection.
-   
-5. **Precision-Driven Optimization**: Fine-tuned the Random Forest classifier to achieve optimal precision, minimizing false positives while maximizing accuracy.
+---  
 
----
+## Usage  
 
-## Key Insights
+- **Input**:  
+  ```json  
+  {  
+      "text": "Your message here",  
+      "min_length": 10,    // Optional  
+      "max_length": 150    // Optional  
+  }  
 
-- **Data Quality Matters**: The quality of the training data significantly influences the model's performance.
-  
-- **Linguistic Nuances**: Understanding the subtleties of language is essential for effective spam detection.
-  
-- **Feature Engineering**: Carefully selected features provide valuable insights into message content.
-  
-- **Algorithm Selection**: The choice of algorithm plays a pivotal role in achieving desired performance metrics.
+## Output  
 
----
-
-
-### Resources
-- **Tutorial by CampusX**: [Watch on YouTube](https://youtu.be/YncZ0WwxyzU?si=uGkZv2EyCyyCLf57)
-- **Dataset**: [SMS Spam Collection Dataset on Kaggle](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
-- **Deployment**: [Integration & Deployment of ML model with React & Flask](https://medium.com/@pooranjoyb/integration-deployment-of-ml-model-with-react-flask-3033dd6034b3)
-
----
-
-## Conclusion
-
-**Spam-No-More** is an effective solution for identifying and managing spam. By carefully preparing the data, engineering relevant features, and selecting an appropriate machine learning model, the project achieves reliable and accurate spam detection. This tool is a practical addition for developers looking to integrate spam filtering into their applications.
+```json  
+{  
+    "result": "Ham",  
+    "summary": "Your text summary",  
+    "confidence": 0.98  
+}  
